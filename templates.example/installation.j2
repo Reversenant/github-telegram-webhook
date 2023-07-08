@@ -1,0 +1,11 @@
+{% if data['action']=="created" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="deleted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="new_permissions_accepted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="suspend" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unsuspend" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

@@ -1,0 +1,5 @@
+{% if data['action']=="published" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>package-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="updated" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>package-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

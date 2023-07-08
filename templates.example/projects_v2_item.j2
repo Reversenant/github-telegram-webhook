@@ -1,0 +1,15 @@
+{% if data['action']=="archived" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="converted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="created" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="deleted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="edited" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="reordered" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="restored" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>projects_v2_item-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

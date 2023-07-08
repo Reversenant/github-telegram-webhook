@@ -1,0 +1,9 @@
+{% if data['action']=="completed" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_job-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="in_progress" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_job-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="queued" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_job-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="waiting" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_job-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

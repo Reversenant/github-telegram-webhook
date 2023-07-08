@@ -1,0 +1,5 @@
+{% if data['action']=="added" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation_repositories-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="removed" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>installation_repositories-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

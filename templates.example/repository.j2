@@ -1,0 +1,19 @@
+{% if data['action']=="archived" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="created" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="deleted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="edited" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="privatized" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="publicized" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="renamed" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="transferred" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unarchived" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

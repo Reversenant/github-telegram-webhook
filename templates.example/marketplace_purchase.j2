@@ -1,0 +1,11 @@
+{% if data['action']=="cancelled" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>marketplace_purchase-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="changed" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>marketplace_purchase-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="pending_change" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>marketplace_purchase-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="pending_change_cancelled" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>marketplace_purchase-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="purchased" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>marketplace_purchase-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}

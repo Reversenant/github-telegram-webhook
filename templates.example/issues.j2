@@ -1,0 +1,33 @@
+{% if data['action']=="assigned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="closed" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="deleted" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="demilestoned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="edited" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="labeled" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="locked" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="milestoned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="opened" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="pinned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="reopened" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="transferred" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unassigned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unlabeled" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unlocked" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% elif data['action']=="unpinned" %}
+    User <code>{{ data['sender']['login'] }}</code> triggered <i>issues-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
+{% endif %}
