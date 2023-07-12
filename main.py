@@ -46,7 +46,7 @@ def ya_handler(event, context):
         if not _verify_signature(
             os.environ['WEBHOOK_SECRET'].encode('utf-8'),
             gh_signature.split('=')[1],
-            event['body']
+            event['body'].encode('utf-8')
         ):
             return {'statusCode': 403, 'body': 'Webhook signature is wrong'}
     if not ('CHAT_ID' in os.environ or 'BOT_TOKEN' in os.environ or 'TEMPLATES_PATH' in os.environ):
