@@ -11,16 +11,22 @@ def _verify_signature(secret: bytes, sig: str, msg: bytes) -> bool:
     return hmac.compare_digest(mac.hexdigest(), sig)
 
 
-def parse_and_send(gh_event: str, body: str):
+def createMessage(gh_event: str, body: str) -> str:
     templateLoader = jinja2.FileSystemLoader(
         searchpath=os.environ['TEMPLATES_PATH'])
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template(f'{gh_event}.j2')
+    return template.render(data=json.loads(body))
+
+
+def sendMessage(text: str) -> dict:
     payload = {
-        "text": template.render(data=json.loads(body)),
+        "text": text,
         "parse_mode": "HTML",
-        "chat_id": os.environ['CHAT_ID']
+        "chat_id": os.environ['CHAT_ID'],
+        "reply_to_message_id": os.environ.get('THREAD_ID','')
     }
+    print(payload)
     headers = {
         "accept": "application/json",
         "content-type": "application/json"
@@ -51,5 +57,5 @@ def ya_handler(event, context):
             return {'statusCode': 403, 'body': 'Webhook signature is wrong'}
     if not ('CHAT_ID' in os.environ or 'BOT_TOKEN' in os.environ or 'TEMPLATES_PATH' in os.environ):
         return {'statusCode': 500, 'body': 'Some settings is missing'}
-
-    return parse_and_send(event['headers']['X-Github-Event'], event['body'])
+    text = createMessage(event['headers']['X-Github-Event'], event['body'])
+    return sendMessage(text)
