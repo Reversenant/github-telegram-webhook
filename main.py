@@ -5,7 +5,18 @@ from hashlib import sha256
 import requests
 import json
 import logging
+import importlib
+import pkgutil
 
+def get_helpers() -> dict:
+    func_dict = {}
+    try:
+        i = importlib.import_module("helpers")
+        for m in pkgutil.iter_modules(i.__path__):
+            func_dict[m.name] = getattr(importlib.import_module(f"helpers.{m.name}"), m.name)
+    except:
+        logging.error("There is no helpers in project")
+    return func_dict
 
 def _verify_signature(secret: bytes, sig: str, msg: bytes) -> bool:
     mac = hmac.new(secret, msg=msg, digestmod=sha256)
@@ -13,16 +24,15 @@ def _verify_signature(secret: bytes, sig: str, msg: bytes) -> bool:
     logging.debug(f"Compare digest {macdigest} and sig {sig}")
     return hmac.compare_digest(macdigest, sig)
 
-
 def createMessage(gh_event: str, body: str) -> str:
     templateLoader = jinja2.FileSystemLoader(
         searchpath=os.environ['TEMPLATES_PATH'])
     templateEnv = jinja2.Environment(loader=templateLoader)
+    templateEnv.globals.update(get_helpers())
     template = templateEnv.get_template(f'{gh_event}.j2')
     text = template.render(data=json.loads(body))
     logging.debug(f"Event: {gh_event}, text: {text}")
     return text
-
 
 def sendMessage(text: str) -> dict:
     payload = {
