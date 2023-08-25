@@ -26,7 +26,7 @@ def _verify_signature(secret: bytes, sig: str, msg: bytes) -> bool:
 
 def createMessage(gh_event: str, body: str) -> str:
     templateLoader = jinja2.FileSystemLoader(
-        searchpath=os.environ['TEMPLATES_PATH'])
+        searchpath=os.environ.get('TEMPLATES_PATH', './templates'))
     templateEnv = jinja2.Environment(loader=templateLoader)
     templateEnv.globals.update(get_helpers())
     template = templateEnv.get_template(f'{gh_event}.j2')
@@ -37,7 +37,7 @@ def createMessage(gh_event: str, body: str) -> str:
 def sendMessage(text: str) -> dict:
     payload = {
         "text": text,
-        "parse_mode": os.environ('MSG_FORMAT','markdown')
+        "parse_mode": os.environ.get('MSG_FORMAT','markdown'),
         "chat_id": os.environ['CHAT_ID'],
         "reply_to_message_id": os.environ.get('THREAD_ID','')
     }
