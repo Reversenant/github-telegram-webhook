@@ -1,5 +1,6 @@
 import requests
 import logging
+import os
 
 class Not200Exception(Exception):
     pass
@@ -14,7 +15,10 @@ def get_release_assets(assets_url: str) -> str:
         for asset in assets:
             browser_download_url = asset['browser_download_url']
             asset_name = asset['name']
-            result += f'<a href="{browser_download_url}">{asset_name}</a>\n'
+            if os.environ.get('MSG_FORMAT', 'markdown') == 'markdown':
+                result += f'[{asset_name}]({browser_download_url})\n'
+            else:
+                result += f'<a href="{browser_download_url}">{asset_name}</a>\n'
     except Exception as e:
         logging.error(f"Can't find assets for release: {e}")
     return result
