@@ -1,0 +1,7 @@
+{% if data['action']==
+    User `{{ data['sender']['login'] }}` triggered *discussion_comment-{{ data['action'] }}* on [{{ data['repository']['full_name'] }}](https://github.com/{{ data['repository']['full_name'] }}) repo.
+{% elif data['action']==
+    User `{{ data['sender']['login'] }}` triggered *discussion_comment-{{ data['action'] }}* on [{{ data['repository']['full_name'] }}](https://github.com/{{ data['repository']['full_name'] }}) repo.
+{% elif data['action']==
+    User `{{ data['sender']['login'] }}` triggered *discussion_comment-{{ data['action'] }}* on [{{ data['repository']['full_name'] }}](https://github.com/{{ data['repository']['full_name'] }}) repo.
+{% endif %}

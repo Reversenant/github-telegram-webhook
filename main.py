@@ -37,7 +37,7 @@ def createMessage(gh_event: str, body: str) -> str:
 def sendMessage(text: str) -> dict:
     payload = {
         "text": text,
-        "parse_mode": "HTML",
+        "parse_mode": os.environ('MSG_FORMAT','markdown')
         "chat_id": os.environ['CHAT_ID'],
         "reply_to_message_id": os.environ.get('THREAD_ID','')
     }
