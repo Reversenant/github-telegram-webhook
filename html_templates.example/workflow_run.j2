@@ -1,7 +1,0 @@
-{% if data['action']=="completed" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="in_progress" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="requested" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>workflow_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

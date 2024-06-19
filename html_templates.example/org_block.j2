@@ -1,5 +1,0 @@
-{% if data['action']=="blocked" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>org_block-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="unblocked" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>org_block-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

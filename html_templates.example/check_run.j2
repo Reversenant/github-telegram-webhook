@@ -1,9 +1,0 @@
-{% if data['action']=="completed" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>check_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="created" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>check_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="requested_action" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>check_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="rerequested" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>check_run-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

@@ -1,5 +1,0 @@
-{% if data['action']=="resolved" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>pull_request_review_thread-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="unresolved" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>pull_request_review_thread-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

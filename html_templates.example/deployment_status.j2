@@ -1,3 +1,0 @@
-{% if data['action']=="created" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>deployment_status-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

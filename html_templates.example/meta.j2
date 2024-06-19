@@ -1,3 +1,0 @@
-{% if data['action']=="deleted" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>meta-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

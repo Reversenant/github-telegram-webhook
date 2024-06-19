@@ -1,0 +1,8 @@
+{% if data.action == "created" %}
+#discussion
+
+🗣️ [{{ data.discussion.user.login }}]({{ data.discussion.user.html_url }}) started [a new discussion: {{ data.discussion.title }}]({{ data.discussion.html_url }}) in the "{{ data.discussion.category.name }}" category:
+{% if data.discussion.body %}
+{{ data.discussion.body.split('<hr /><em>')[0].strip() | replace("_", "\_") }}
+{% endif %}
+{% endif %}

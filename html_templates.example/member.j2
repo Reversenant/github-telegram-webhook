@@ -1,7 +1,0 @@
-{% if data['action']=="added" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>member-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="edited" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>member-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% elif data['action']=="removed" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>member-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

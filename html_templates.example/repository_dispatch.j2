@@ -1,3 +1,0 @@
-{% if data['action']=="on-demand-test" %}
-    User <code>{{ data['sender']['login'] }}</code> triggered <i>repository_dispatch-{{ data['action'] }}</i> on <a href="https://github.com/{{ data['repository']['full_name'] }}">{{ data['repository']['full_name'] }}</a> repo.
-{% endif %}

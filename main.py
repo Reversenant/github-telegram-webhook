@@ -5,42 +5,36 @@ from hashlib import sha256
 import requests
 import json
 import logging
-import importlib
-import pkgutil
 
-def get_helpers() -> dict:
-    func_dict = {}
-    try:
-        i = importlib.import_module("helpers")
-        for m in pkgutil.iter_modules(i.__path__):
-            func_dict[m.name] = getattr(importlib.import_module(f"helpers.{m.name}"), m.name)
-    except:
-        logging.error("There is no helpers in project")
-    return func_dict
+# Names of repositories and ID topics from telegram chat
+REPO_TOPIC_MAP = {
+    "first repository": 1,
+    "second repository": 2 
+}
 
-def _verify_signature(secret: bytes, sig: str, msg: bytes) -> bool:
-    mac = hmac.new(secret, msg=msg, digestmod=sha256)
-    macdigest = mac.hexdigest()
-    logging.debug(f"Compare digest {macdigest} and sig {sig}")
-    return hmac.compare_digest(macdigest, sig)
+def verify_github_signature(secret, signature, payload):
+    mac = hmac.new(secret.encode(), msg=payload.encode(), digestmod=sha256)
+    expected_signature = f"sha256={mac.hexdigest()}"
+    return hmac.compare_digest(expected_signature, signature)
 
 def createMessage(gh_event: str, body: str) -> str:
-    templateLoader = jinja2.FileSystemLoader(
-        searchpath=os.environ.get('TEMPLATES_PATH', './templates'))
+    templateLoader = jinja2.FileSystemLoader(searchpath='./templates')
     templateEnv = jinja2.Environment(loader=templateLoader)
-    templateEnv.globals.update(get_helpers())
     template = templateEnv.get_template(f'{gh_event}.j2')
     text = template.render(data=json.loads(body))
     logging.debug(f"Event: {gh_event}, text: {text}")
     return text
 
-def sendMessage(text: str) -> dict:
+
+def sendMessage(text: str, thread_id: int = None) -> dict:
     payload = {
         "text": text,
-        "parse_mode": os.environ.get('MSG_FORMAT','markdown'),
+        "parse_mode": 'markdown',
         "chat_id": os.environ['CHAT_ID'],
-        "reply_to_message_id": os.environ.get('THREAD_ID','')
     }
+    if thread_id:
+        payload["message_thread_id"] = thread_id
+
     logging.debug(f"TG Payload: {payload}")
     headers = {
         "accept": "application/json",
@@ -52,9 +46,7 @@ def sendMessage(text: str) -> dict:
         err = {'statusCode': r.status_code, 'body': r.text}
         logging.error(err)
         return err
-    return {'statusCode': 200, 'body': 'Translated to recievers'}
-
-# Special function to YC Cloud Functions
+    return {'statusCode': 200, 'body': 'Translated to receivers'}
 
 def returnHandler(resp):
     logging.info(resp)
@@ -62,23 +54,36 @@ def returnHandler(resp):
 
 def ya_handler(event, context):
     logging.getLogger().setLevel(logging.DEBUG)
+
     if event['httpMethod'] != "POST":
         logging.debug(f"HTTP Method is {event['httpMethod']}")
-        return returnHandler({'statusCode': 405})
-    if not "GitHub-Hookshot" in event['headers']['User-Agent']:
-        logging.debug(f"User-Agent is {event['headers']['User-Agent']}")
-        return returnHandler({'statusCode': 403})
-    if 'WEBHOOK_SECRET' in os.environ:
-        if not 'X-Hub-Signature-256' in event['headers']:
-            return returnHandler({'statusCode': 403, 'body': 'Webhook signature is missing'})
-        gh_signature = event['headers']['X-Hub-Signature-256']
-        if not _verify_signature(
-            os.environ['WEBHOOK_SECRET'].encode('utf-8'),
-            gh_signature.split('=')[1],
-            event['body'].encode('utf-8')
-        ):
-            return returnHandler({'statusCode': 403, 'body': 'Webhook signature is wrong'})
-    if not ('CHAT_ID' in os.environ or 'BOT_TOKEN' in os.environ or 'TEMPLATES_PATH' in os.environ):
-        return returnHandler({'statusCode': 500, 'body': 'Some settings is missing'})
+        return returnHandler({'statusCode': 405, 'body': 'Method Not Allowed'})
+
+    if not event['headers'].get('User-Agent', '').startswith("GitHub-Hookshot"):
+        logging.debug(f"User-Agent is {event['headers'].get('User-Agent')}")
+        return returnHandler({'statusCode': 403, 'body': 'Forbidden: Invalid User-Agent'})
+
+    required_env_vars = ['CHAT_ID', 'BOT_TOKEN', 'GITHUB_SECRET']
+    missing_env_vars = [var for var in required_env_vars if var not in os.environ]
+    if missing_env_vars:
+        return returnHandler({'statusCode': 500, 'body': f'Missing environment variables: {", ".join(missing_env_vars)}'})
+
+    signature = event['headers'].get('X-Hub-Signature-256')
+    if not signature:
+        logging.debug("Missing X-Hub-Signature-256")
+        return returnHandler({'statusCode': 403, 'body': 'Forbidden: Missing signature'})
+    
+    if not verify_github_signature(os.environ['GITHUB_SECRET'], signature, event['body']):
+        logging.debug("Invalid signature")
+        return returnHandler({'statusCode': 403, 'body': 'Forbidden: Invalid signature'})
+
+    payload = json.loads(event['body'])
+    repository_name = payload['repository']['name']
+
+    thread_id = REPO_TOPIC_MAP.get(repository_name)
+    if not thread_id:
+        logging.debug(f"No topic mapping found for repository: {repository_name}")
+        return returnHandler({'statusCode': 400, 'body': 'Bad Request: No topic mapping for repository'})
+
     text = createMessage(event['headers']['X-Github-Event'], event['body'])
-    return returnHandler(sendMessage(text))
+    return returnHandler(sendMessage(text, thread_id))
