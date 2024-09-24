@@ -1,0 +1,27 @@
+{
+    "action": "opened",
+    "number": 5,
+    "pull_request": {
+      "url": "https://api.github.com/repos/user/Test-repo/pulls/5",
+      "id": 1,
+      "title": "Update README",
+      "body": "Please pull these awesome changes",
+      "head": {
+        "ref": "feature-branch",
+        "sha": "b080bf16b58d"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "a88eac737d5a"
+      }
+    },
+    "repository": {
+      "id": 1,
+      "name": "Test-repo",
+      "full_name": "user/Test-repo"
+    },
+    "sender": {
+      "login": "username"
+    }
+  }
+  

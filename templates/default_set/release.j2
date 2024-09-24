@@ -1,0 +1,20 @@
+{% set release = data.release %}
+{% set action = data.action %}
+{% set repository = data.repository %}
+{% set sender = data.sender %}
+{% if action == 'published' %}
+📦 New Release Published
+🔹 *Release Name:* {{ release.name }}
+🔹 *Tag:* {{ release.tag_name }}
+🔹 *Description:* {{ release.body }}
+🔹 *Download:* [tarball]({{ release.tarball_url }}) | [zipball]({{ release.zipball_url }})
+🔹 *Repository:* [{{ repository.full_name }}](https://github.com/{{ repository.full_name }})
+🔹 *Published by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}
+{% if action == 'deleted' %}
+🗑️ Release Deleted
+🔹 *Release Name:* {{ release.name }}
+🔹 *Tag:* {{ release.tag_name }}
+🔹 *Repository:* [{{ repository.full_name }}](https://github.com/{{ repository.full_name }})
+🔹 *Deleted by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}

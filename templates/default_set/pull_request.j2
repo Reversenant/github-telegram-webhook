@@ -1,0 +1,14 @@
+{% set action = data.action %}
+{% set pull_request = data.pull_request %}
+{% set repository = data.repository %}
+{% set sender = data.sender %}
+{% if action == 'opened' %}
+🔀 New Pull Request Opened
+🔹 *Title:* {{ pull_request.title }}
+🔹 *PR URL:* [{{ pull_request.url }}]({{ pull_request.url }})
+🔹 *Description:* {{ pull_request.body }}
+🔹 *Head Branch:* {{ pull_request.head.ref }}
+🔹 *Base Branch:* {{ pull_request.base.ref }}
+🔹 *Repository:* [ Link ](https://github.com/{{ repository.full_name }})
+🔹 *Opened by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}

@@ -1,0 +1,24 @@
+{% set action = data.action %}
+{% set comment = data.comment %}
+{% set issue = data.issue %}
+{% set repository = data.repository %}
+{% set sender = data.sender %}
+{% if action == 'opened' %}
+📝 New Issue Opened
+🔹 *Title:* {{ issue.title }}
+🔹 *Number:* {{ issue.number }}
+🔹 *URL:* [ Link ]({{ issue.html_url }})
+🔹 *Description:* {{ issue.body }}
+🔹 *Labels:* {% for label in issue.labels %} `{{ label.name }}` {% endfor %}
+🔹 *Repository:* [{{ repository.name }}](https://github.com/{{ repository.name }})
+🔹 *Opened by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}
+{% if action == 'closed' %}
+🔒 Issue Closed
+🔹 *Title:* {{ issue.title }}
+🔹 *Number:* {{ issue.number }}
+🔹 *URL:* [ Link ]({{ issue.html_url }})
+🔹 *Labels:* {% for label in issue.labels %} `{{ label.name }}` {% endfor %}
+🔹 *Repository:* [{{ repository.name }}](https://github.com/{{ repository.name }})
+🔹 *Closed by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}

@@ -1,0 +1,15 @@
+{% set pull_request = data.pull_request %}
+{% set ref = data.ref %}
+{% set repository = data.repository %}
+{% set commit = data.commit %}
+{% set commits = data.commits %}
+{% set sender = data.sender %}
+📥 New Push to Repository
+🔹 *Repository:* [{{ repository.full_name }}](https://github.com/{{ repository.full_name }})
+🔹 *Branch:* {{ ref.split('/')[-1] }}
+🔹 *Pushed by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% for commit in commits %}
+🔸 *Commit:* [{{ commit.id }}]({{ commit.url }})
+🔹 *Message:* {{ commit.message }}
+🔹 *Author:* {{ commit.author.name }}
+{% endfor %}

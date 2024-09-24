@@ -1,7 +1,0 @@
-{% if data.action == "created" %}
-#discussion\_comment
-
-📝 Comment by [{{ data.comment.user.login }}]({{ data.comment.user.html_url }}) in the discussion ["{{ data.discussion.title }}"]({{ data.comment.html_url }})
-
-{{ data.comment.body | replace("_", "\_") }}
-{% endif %}

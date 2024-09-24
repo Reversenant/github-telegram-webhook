@@ -1,0 +1,21 @@
+{
+    "action": "closed",
+    "issue": {
+      "title": "Example Issue Title",
+      "number": 123,
+      "html_url": "https://github.com/user/repo/issues/123",
+      "state": "closed",
+      "body": "This is the body of the issue.",
+      "labels": [
+        {"name": "bug"}
+      ]
+    },
+    "repository": {
+      "id": 1,
+      "name": "Test-repo"
+    },
+    "sender": {
+      "login": "username"
+    }
+  }
+  

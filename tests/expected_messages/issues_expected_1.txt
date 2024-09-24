@@ -1,0 +1,8 @@
+📝 New Issue Opened
+🔹 *Title:* New Issue Title
+🔹 *Number:* 124
+🔹 *URL:* [ Link ](https://github.com/user/repo/issues/124)
+🔹 *Description:* This is the body of the issue.
+🔹 *Labels:*  `bug`  `help wanted` 
+🔹 *Repository:* [Test-repo](https://github.com/Test-repo)
+🔹 *Opened by:* [anotheruser](https://github.com/anotheruser)  

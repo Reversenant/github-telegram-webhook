@@ -1,0 +1,13 @@
+{% set action = data.action %}
+{% set comment = data.comment %}
+{% set issue = data.issue %}
+{% set repository = data.repository %}
+{% set sender = data.sender %}
+{% if action == 'created' %}
+💬 New Comment on Issue
+🔹 *Issue:* [{{ issue.title }}](https://github.com/{{ repository.full_name }}/issues/{{ issue.number }})
+🔹 *Comment:* {{ comment.body }}
+🔹 *Comment URL:* [ Link ]({{ comment.html_url }})
+🔹 *Repository:* [{{ repository.full_name }}](https://github.com/{{ repository.full_name }})
+🔹 *Commented by:* [{{ sender.login }}](https://github.com/{{ sender.login }})
+{% endif %}

@@ -1,0 +1,23 @@
+{
+    "action": "deleted",
+    "release": {
+      "url": "https://api.github.com/repos/user/Test-repo/releases/4",
+      "id": 4,
+      "tag_name": "v1.3.0",
+      "name": "Third release",
+      "body": "Description of the third release",
+      "tarball_url": "https://api.github.com/repos/user/Test-repo/tarball/v1.3.0",
+      "zipball_url": "https://api.github.com/repos/user/Test-repo/zipball/v1.3.0",
+      "draft": false,
+      "prerelease": false
+    },
+    "repository": {
+      "id": 1,
+      "name": "Test-repo",
+      "full_name": "user/Test-repo"
+    },
+    "sender": {
+      "login": "username"
+    }
+  }
+  

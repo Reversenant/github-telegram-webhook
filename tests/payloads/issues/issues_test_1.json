@@ -1,0 +1,20 @@
+{
+    "action": "opened",
+    "issue": {
+      "title": "New Issue Title",
+      "number": 124,
+      "html_url": "https://github.com/user/repo/issues/124",
+      "body": "This is the body of the issue.",
+      "labels": [
+        {"name": "bug"},
+        {"name": "help wanted"}
+      ]
+    },
+    "repository": {
+      "id": 1,
+      "name": "Test-repo"
+    },
+    "sender": {
+      "login": "anotheruser"
+    }
+}
